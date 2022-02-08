@@ -1,35 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
-  "version": "${version}",
+  "id": "roa",
+  "version": "${0.0.0}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Realm of Alora",
+  "description": "This mod adds a loyalty rewards program for murder.",
   "authors": [
-    "Me!"
+    "Kluzzio"
   ],
-  "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
-  },
+  "contact": {},
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
-
+  "license": "MIT",
+  "icon": "assets/roa/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "kluzzio.roa.RealmOfAlora"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "roa.mixins.json"
   ],
 
   "depends": {
     "fabricloader": ">=0.12.12",
     "fabric": "*",
-    "minecraft": "1.18.x",
+    "minecraft": "1.18.*",
     "java": ">=17"
   },
   "suggests": {
