@@ -4,6 +4,7 @@
   "package": "kluzzio.roa.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "ClientPlayerEntityMixin",
     "LivingEntityMixin"
   ],
   "client": [
