@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "roa",
-  "version": "${0.0.0}",
+  "version": "${version}",
 
   "name": "Realm of Alora",
   "description": "This mod adds a loyalty rewards program for murder.",
