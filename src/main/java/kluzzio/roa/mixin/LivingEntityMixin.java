@@ -1,6 +1,5 @@
 package kluzzio.roa.mixin;
 
-import kluzzio.roa.RealmOfAlora;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -19,7 +18,9 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(method = "onDeath", at = @At("HEAD"))
     public void deathModifyDevotion(DamageSource source, CallbackInfo ci) {
-        if (source.getSource() instanceof PlayerEntity playerEntity)
-            playerEntity.increaseStat(RealmOfAlora.DEVOTION_TO_ALORA, 1);
+        if (source.getSource() instanceof PlayerEntity playerEntity) {
+            //playerEntity.increaseStat(RealmOfAlora.DEVOTION_TO_ALORA, 1);
+            ((DevotedEntity) playerEntity).increaseDevotion(1);
+        }
     }
 }

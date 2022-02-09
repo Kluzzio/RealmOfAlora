@@ -1,39 +1,53 @@
 package kluzzio.roa.mixin;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
+import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.crash.CrashException;
-import net.minecraft.util.crash.CrashReport;
-import net.minecraft.util.crash.CrashReportSection;
+import net.minecraft.network.Packet;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(ClientPlayerEntityMixin.class)
-public abstract class ClientPlayerEntityMixin extends Entity {
+public class DevotedEntity extends PlayerEntity {
 
-    public ClientPlayerEntityMixin(EntityType<?> type, World world, DataTracker dataTracker) {
-        super(type, world);
-        this.dataTracker = dataTracker;
-        this.dataTracker.startTracking(DEVOTION, 0);
+    public DevotedEntity(World world, BlockPos pos, float yaw, GameProfile profile) {
+        super(world, pos, yaw, profile);
     }
 
-    protected final DataTracker dataTracker;
+    static {
+        DEVOTION = DataTracker.registerData(DevotedEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    }
 
-    protected abstract void initDataTracker();
+    protected static final TrackedData<Integer> DEVOTION;
+
+    protected void initDataTracker() {
+        this.dataTracker.startTracking(DEVOTION, 0);
+    }
 
     public DataTracker getDataTracker() {
         return this.dataTracker;
     }
 
-    private static final TrackedData<Integer> DEVOTION;
-
     public void writeCustomDataToNbt(NbtCompound nbt) {
         nbt.putInt("Devotion", this.getDevotion());
+    }
+
+    @Override
+    public boolean isSpectator() {
+        return false;
+    }
+
+    @Override
+    public boolean isCreative() {
+        return false;
+    }
+
+    @Override
+    public Packet<?> createSpawnPacket() {
+        return null;
     }
 
     public void readCustomDataFromNbt(NbtCompound nbt) {
@@ -58,9 +72,5 @@ public abstract class ClientPlayerEntityMixin extends Entity {
 
     public void setDevotion(int devotion) {
         this.dataTracker.set(DEVOTION, MathHelper.clamp(devotion, 0, this.getMaxDevotion()));
-    }
-
-    static {
-        DEVOTION = DataTracker.registerData(ClientPlayerEntityMixin.class, TrackedDataHandlerRegistry.INTEGER);
     }
 }
