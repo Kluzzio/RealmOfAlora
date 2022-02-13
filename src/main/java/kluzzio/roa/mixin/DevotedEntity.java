@@ -1,4 +1,4 @@
-package kluzzio.roa.mixin;
+/*package kluzzio.roa.mixin;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.data.DataTracker;
@@ -74,3 +74,4 @@ public class DevotedEntity extends PlayerEntity {
         this.dataTracker.set(DEVOTION, MathHelper.clamp(devotion, 0, this.getMaxDevotion()));
     }
 }
+*/
