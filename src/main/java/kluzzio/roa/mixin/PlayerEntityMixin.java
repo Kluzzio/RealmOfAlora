@@ -1,6 +1,7 @@
 package kluzzio.roa.mixin;
 
 import kluzzio.roa.api.interfaces.IDevotionEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.data.DataTracker;
@@ -20,52 +21,36 @@ public abstract class PlayerEntityMixin
         extends LivingEntity
         implements IDevotionEntity {
 
-    private int devotion;
-
-    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world, DataTracker dataTracker) {
+    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
-        this.dataTracker = dataTracker;
     }
 
-    private final DataTracker dataTracker;
+    private static final TrackedData<Integer> DEVOTION = DataTracker.registerData(PlayerEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
-    static {
-    //    DEVOTION = DataTracker.registerData(PlayerEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    }
-
-    //protected static final TrackedData<Integer> DEVOTION;
+    @Override
+    public DataTracker getDataTracker(){ return dataTracker; }
 
     @Inject(method = "initDataTracker", at = @At("TAIL"))
     protected void injectInitDataTracker(CallbackInfo ci) {
-   //     this.dataTracker.startTracking(DEVOTION, 0);
+        dataTracker.startTracking(DEVOTION, 0);
     }
 
     @Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
     public void injectWriteCustomDataToNbt(NbtCompound nbt, CallbackInfo ci) {
-        //nbt.putInt("Devotion", this.getDevotion());
-        nbt.putInt("Devotion", this.devotion);
+        nbt.putInt("Devotion", getDevotion());
     }
 
-    @Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
+    @Inject(method = "readCustomDataFromNbt", at = @At("RETURN"))
     public void injectReadCustomDataFromNbt(NbtCompound nbt, CallbackInfo ci) {
-        this.devotion = nbt.getInt("Devotion");
-    }
-
-    public void increaseDevotion(int amount) {
-        int f = this.getDevotion();
-        this.setDevotion(f + amount);
-    }
-
-    public void decreaseDevotion(int amount) {
-        int f = this.getDevotion();
-        this.setDevotion(f - amount);
+        setDevotion(nbt.getInt("Devotion"));
     }
 
     public int getMaxDevotion() { return 500; }
 
-    //public int getDevotion() { return this.dataTracker.get(DEVOTION); }
+    public int getDevotion() { return dataTracker.get(DEVOTION); }
 
     public void setDevotion(int devotion) {
-   //     this.dataTracker.set(DEVOTION, MathHelper.clamp(devotion, 0, this.getMaxDevotion()));
+        if (devotion >= 0)
+            dataTracker.set(DEVOTION, MathHelper.clamp(devotion, 0, getMaxDevotion()));
     }
 }
