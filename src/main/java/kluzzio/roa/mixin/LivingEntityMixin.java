@@ -19,10 +19,8 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(method = "onDeath", at = @At("HEAD"))
     public void deathModifyDevotion(DamageSource source, CallbackInfo ci) {
-        if (source.getSource() instanceof PlayerEntity playerEntity) {
+        if (source.getAttacker() instanceof PlayerEntity playerEntity) {
             FavorHelper.increaseDevotion(playerEntity, 1);
-            //Output to Log
-            //FavorHelper.decreaseDevotion(playerEntity, 1); I AM ECSTATIC! IT WORKS
         }
     }
 }
