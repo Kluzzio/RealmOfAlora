@@ -55,11 +55,15 @@ public class FavorHelper {
     }
 
     public static void deathDevotionChange(PlayerEntity playerEntity, LivingEntity livingEntity) {
-        //livingEntity.getType().getSpawnGroup();
-        // Check what the livingEntity Type is
-        //int devotion = switch (livingEntity.getType()) {
-        //if (config for livingEntityType is true)
-        //increaseDevotion(playerEntity, devotion);
-        //else decreasedDevotion(playerEntity, devotion);
+        if (EntityHelper.validEntityType(livingEntity)) {
+            int devotion = RealmOfAlora.config.roaEntityDevotionConfig.REWARD_OF_ALORA.get(livingEntity.getType());
+
+            if (RealmOfAlora.config.roaEntityDevotionConfig.TARGET_OF_ALORA.get(livingEntity.getType())) {
+                if (InventoryHelper.roa$hasChalice(playerEntity))
+                    increaseDevotion(playerEntity, devotion);
+            }
+            else
+                decreaseDevotion(playerEntity, devotion);
+        }
     }
 }

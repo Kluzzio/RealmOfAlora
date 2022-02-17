@@ -13,6 +13,9 @@ public class RoaConfig implements ConfigData {
     @ConfigEntry.Category("roa_devotion_config")
     public RoaDevotionConfig roaDevotionConfig = new RoaDevotionConfig();
 
+    @ConfigEntry.Category("roa_entity_devotion_config")
+    public RoaEntityDevotionConfig roaEntityDevotionConfig = new RoaEntityDevotionConfig();
+
     public static void init() {
         AutoConfig.register(RoaConfig.class,
                 JanksonConfigSerializer::new);
