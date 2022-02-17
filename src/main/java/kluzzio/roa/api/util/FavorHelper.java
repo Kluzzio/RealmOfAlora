@@ -1,15 +1,22 @@
 package kluzzio.roa.api.util;
 
+import kluzzio.roa.RealmOfAlora;
 import kluzzio.roa.api.interfaces.IDevotionEntity;
+import kluzzio.roa.enums.DevotionID;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class FavorHelper {
 
     // These are thresholds of Devotion
-    public static final int blind = 0;
-    public static final int follower = 250;
-    public static final int worshipper = 500;
-    public static final int devotee = 1000;
+    public static final int blind = // 0
+            RealmOfAlora.config.roaDevotionConfig.DEVOTION_THRESHOLDS.get(DevotionID.BLIND);
+    public static final int follower = // 250
+            RealmOfAlora.config.roaDevotionConfig.DEVOTION_THRESHOLDS.get(DevotionID.FOLLOWER);
+    public static final int worshipper = // 500
+            RealmOfAlora.config.roaDevotionConfig.DEVOTION_THRESHOLDS.get(DevotionID.WORSHIPPER);
+    public static final int devotee = // 1000
+            RealmOfAlora.config.roaDevotionConfig.DEVOTION_THRESHOLDS.get(DevotionID.DEVOTEE);
 
     public static int getDevotion(PlayerEntity playerEntity) {
         return ((IDevotionEntity) playerEntity).getDevotion();
@@ -45,5 +52,14 @@ public class FavorHelper {
             setDevotion(playerEntity, follower);
         else if (getDevotion(playerEntity) > blind)
             setDevotion(playerEntity, blind);
+    }
+
+    public static void deathDevotionChange(PlayerEntity playerEntity, LivingEntity livingEntity) {
+        //livingEntity.getType().getSpawnGroup();
+        // Check what the livingEntity Type is
+        //int devotion = switch (livingEntity.getType()) {
+        //if (config for livingEntityType is true)
+        //increaseDevotion(playerEntity, devotion);
+        //else decreasedDevotion(playerEntity, devotion);
     }
 }

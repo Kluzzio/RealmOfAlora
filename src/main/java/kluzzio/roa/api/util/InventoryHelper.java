@@ -34,6 +34,6 @@ public class InventoryHelper {
     }
 
     public static boolean roa$hasChalice(PlayerEntity playerEntity) {
-        return InventoryHelper.roa$hasItem(playerEntity, ItemsInit.roaItems.get(ItemsID.CHALICE_OF_ALORA));
+        return InventoryHelper.roa$hasItem(playerEntity, ItemsInit.ROA_ITEMS.get(ItemsID.CHALICE_OF_ALORA));
     }
 }

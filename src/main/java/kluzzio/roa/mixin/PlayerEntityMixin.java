@@ -16,7 +16,7 @@ public class PlayerEntityMixin {
     public void roa$onDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         PlayerEntity damagedPlayer = (PlayerEntity) (Object) this;
         if (source.getAttacker() instanceof PlayerEntity attackingPlayer) {
-            if (FavorHelper.getDevotion(damagedPlayer) > FavorHelper.worshipper && InventoryHelper.roa$hasChalice(damagedPlayer)) {
+            if (FavorHelper.getDevotion(damagedPlayer) >= FavorHelper.worshipper && InventoryHelper.roa$hasChalice(damagedPlayer)) {
                 FavorHelper.greatMisdeed(attackingPlayer);
             }
         }

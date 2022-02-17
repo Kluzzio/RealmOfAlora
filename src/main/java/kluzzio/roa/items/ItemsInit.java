@@ -10,13 +10,13 @@ import java.util.EnumMap;
 import static kluzzio.roa.RealmOfAlora.ID;
 
 public class ItemsInit {
-    public static final EnumMap<ItemsID, Item> roaItems = new EnumMap<>(ItemsID.class);
+    public static final EnumMap<ItemsID, Item> ROA_ITEMS = new EnumMap<>(ItemsID.class);
 
     public static void init() {
 
         for (ItemsID itemsID : ItemsID.values()) {
             var roaItem = new Item(new Item.Settings().group(ItemGroup.MISC).maxCount(1));
-            roaItems.put(itemsID, roaItem);
+            ROA_ITEMS.put(itemsID, roaItem);
             registerItem(itemsID.toString().toLowerCase(), roaItem);
         }
     }

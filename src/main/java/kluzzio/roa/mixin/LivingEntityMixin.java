@@ -21,6 +21,8 @@ public abstract class LivingEntityMixin extends Entity {
     public void deathModifyDevotion(DamageSource source, CallbackInfo ci) {
         if (source.getAttacker() instanceof PlayerEntity playerEntity) {
             FavorHelper.increaseDevotion(playerEntity, 1);
+            LivingEntity livingEntity = (LivingEntity) (Object) this;
+            System.out.println(livingEntity.getEntityName());
         }
     }
 }
