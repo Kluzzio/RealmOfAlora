@@ -23,7 +23,7 @@ public class RealmOfAlora implements ModInitializer {
 
 	public static RoaConfig config;
 
-	public static final Block ALTAR_OF_ALORA = new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 4.0f));
+	public static final Block ALTAR_OF_ALORA = new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 4.0f).requiresTool());
 
 	@Override
 	public void onInitialize() {

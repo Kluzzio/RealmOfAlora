@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "roa:block/altar/altar_of_alora_side",
+    "north": "roa:block/altar/altar_of_alora_side",
+    "south": "roa:block/altar/altar_of_alora_side",
+    "east": "roa:block/altar/altar_of_alora_side",
+    "west": "roa:block/altar/altar_of_alora_side",
+    "up": "roa:block/altar/altar_of_alora_top",
+    "down": "roa:block/altar/altar_of_alora_bottom"
+  }
+}
