@@ -6,9 +6,10 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
+import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 
 @Config(name = RealmOfAlora.MOD_ID)
-public class RoaConfig implements ConfigData {
+public class RoaConfig extends PartitioningSerializer.GlobalData {
 
     @ConfigEntry.Category("roa_devotion_config")
     public RoaDevotionConfig roaDevotionConfig = new RoaDevotionConfig();
@@ -18,6 +19,6 @@ public class RoaConfig implements ConfigData {
 
     public static void init() {
         AutoConfig.register(RoaConfig.class,
-                JanksonConfigSerializer::new);
+                PartitioningSerializer.wrap(JanksonConfigSerializer::new));
     }
 }
