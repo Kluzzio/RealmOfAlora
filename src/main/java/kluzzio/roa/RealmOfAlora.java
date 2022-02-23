@@ -1,6 +1,7 @@
 package kluzzio.roa;
 
 import kluzzio.roa.config.RoaConfig;
+import kluzzio.roa.items.BlocksInit;
 import kluzzio.roa.items.ItemsInit;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.api.ModInitializer;
@@ -23,8 +24,6 @@ public class RealmOfAlora implements ModInitializer {
 
 	public static RoaConfig config;
 
-	public static final Block ALTAR_OF_ALORA = new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 4.0f).requiresTool());
-
 	@Override
 	public void onInitialize() {
 
@@ -34,7 +33,6 @@ public class RealmOfAlora implements ModInitializer {
 
 		//Item Creation
 		ItemsInit.init();
-		Registry.register(Registry.BLOCK, new Identifier("roa", "altar_of_alora"), ALTAR_OF_ALORA);
-		Registry.register(Registry.ITEM, new Identifier("roa", "altar_of_alora"), new BlockItem(ALTAR_OF_ALORA, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		BlocksInit.init();
 	}
 }
