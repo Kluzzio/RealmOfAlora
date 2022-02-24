@@ -20,6 +20,13 @@ public class ChaliceOfAloraBlock extends Block {
         super(settings);
     }
 
+    private VoxelShape shape() {
+        return VoxelShapes.union(
+                VoxelShapes.cuboid(6f/16f, 0, 6f/16f, 10f/16f, 0.5f/16f, 10f/16f),
+                VoxelShapes.cuboid(6.8f/16f, 0.5f/16f, 6.8f/16f, 9.2f/16f, 5.5f/16f, 9.2f/16f),
+                VoxelShapes.cuboid(5.3f/16f, 5.5f/16f, 5.3f/16f, 10.7f/16f, 12.5f/16f, 10.7f/16f));
+    }
+
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
             if (player.getStackInHand(hand).isEmpty()) {
@@ -32,17 +39,6 @@ public class ChaliceOfAloraBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        return VoxelShapes.union(
-                VoxelShapes.cuboid(6, 0, 6, 10, 0.5, 10),
-                VoxelShapes.cuboid(6.8, 0.5, 6.8, 9.2, 5.5, 9.2),
-                VoxelShapes.cuboid(5.3, 5.5, 5.3, 10.7, 12.5, 10.7));
-    }
-
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        return VoxelShapes.union(
-                VoxelShapes.cuboid(6, 0, 6, 10, 0.5, 10),
-                VoxelShapes.cuboid(6.8, 0.5, 6.8, 9.2, 5.5, 9.2),
-                VoxelShapes.cuboid(5.3, 5.5, 5.3, 10.7, 12.5, 10.7));
+        return shape();
     }
 }
