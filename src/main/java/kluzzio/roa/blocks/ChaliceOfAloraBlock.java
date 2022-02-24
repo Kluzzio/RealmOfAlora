@@ -31,7 +31,9 @@ public class ChaliceOfAloraBlock extends Block {
         if (!world.isClient) {
             if (player.getStackInHand(hand).isEmpty()) {
                 player.setStackInHand(hand, new ItemStack(BlocksInit.ROA_BLOCKS.get(BlocksID.CHALICE_OF_ALORA)));
-            }
+                world.breakBlock(pos,false, player);
+            } else
+                world.breakBlock(pos,true, player);
         }
 
         return ActionResult.SUCCESS;
