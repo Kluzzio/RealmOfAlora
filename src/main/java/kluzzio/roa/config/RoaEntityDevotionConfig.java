@@ -2,6 +2,7 @@ package kluzzio.roa.config;
 
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 import net.minecraft.entity.*;
 
 import java.util.LinkedHashMap;
@@ -10,6 +11,7 @@ import java.util.List;
 @Config(name = "roa_entity_devotion_config")
 public class RoaEntityDevotionConfig implements ConfigData {
 
+    @Comment("When entity dies, if entity is a TARGET_OF_ALORA, GAIN devotion equal to REWARD_OF_ALORA. Otherwise, LOSE that much.")
     public final LinkedHashMap<EntityType<? extends Entity>, Boolean> TARGET_OF_ALORA = new LinkedHashMap<>();
     public final LinkedHashMap<EntityType<? extends Entity>, Integer> REWARD_OF_ALORA = new LinkedHashMap<>();
 
@@ -77,7 +79,7 @@ public class RoaEntityDevotionConfig implements ConfigData {
         REWARD_OF_ALORA.put(EntityType.PARROT, 1);
         REWARD_OF_ALORA.put(EntityType.PHANTOM, 10);
         REWARD_OF_ALORA.put(EntityType.PIG, 1);
-        REWARD_OF_ALORA.put(EntityType.PIGLIN, 2);
+        REWARD_OF_ALORA.put(EntityType.PIGLIN, 3);
         REWARD_OF_ALORA.put(EntityType.PIGLIN_BRUTE, 6);
         REWARD_OF_ALORA.put(EntityType.PILLAGER, 3);
         REWARD_OF_ALORA.put(EntityType.POLAR_BEAR, 2);
@@ -96,7 +98,7 @@ public class RoaEntityDevotionConfig implements ConfigData {
         REWARD_OF_ALORA.put(EntityType.SQUID, 1);
         REWARD_OF_ALORA.put(EntityType.STRAY, 3);
         REWARD_OF_ALORA.put(EntityType.STRIDER, 2);
-        REWARD_OF_ALORA.put(EntityType.TRADER_LLAMA, 7);
+        REWARD_OF_ALORA.put(EntityType.TRADER_LLAMA, 12);
         REWARD_OF_ALORA.put(EntityType.TROPICAL_FISH, 1);
         REWARD_OF_ALORA.put(EntityType.TURTLE, 1);
         REWARD_OF_ALORA.put(EntityType.VEX, 6);
