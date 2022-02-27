@@ -1,6 +1,8 @@
 package kluzzio.roa.mixin;
 
+import kluzzio.roa.RealmOfAlora;
 import kluzzio.roa.api.interfaces.IDevotionEntity;
+import kluzzio.roa.enums.DevotionID;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.data.DataTracker;
@@ -26,12 +28,14 @@ public abstract class PlayerMixin
 
     private static final TrackedData<Integer> DEVOTION = DataTracker.registerData(PlayerEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
+    private final int blind = RealmOfAlora.config.roaDevotionConfig.DEVOTION_THRESHOLDS.get(DevotionID.BLIND);
+
     @Override
     public DataTracker getDataTracker(){ return dataTracker; }
 
     @Inject(method = "initDataTracker", at = @At("TAIL"))
     protected void injectInitDataTracker(CallbackInfo ci) {
-        dataTracker.startTracking(DEVOTION, 0);
+        dataTracker.startTracking(DEVOTION, blind);
     }
 
     @Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
@@ -44,12 +48,12 @@ public abstract class PlayerMixin
         setDevotion(nbt.getInt("Devotion"));
     }
 
-    public int getMaxDevotion() { return 1000; }
+    public int getMaxDevotion() { return RealmOfAlora.config.roaDevotionConfig.DEVOTION_THRESHOLDS.get(DevotionID.DEVOTEE); }
 
     public int getDevotion() { return dataTracker.get(DEVOTION); }
 
     public void setDevotion(int devotion) {
-        if (devotion >= 0)
-            dataTracker.set(DEVOTION, MathHelper.clamp(devotion, 0, getMaxDevotion()));
+        if (devotion >= blind)
+            dataTracker.set(DEVOTION, MathHelper.clamp(devotion, blind, getMaxDevotion()));
     }
 }

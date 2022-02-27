@@ -37,15 +37,12 @@ public class FavorHelper {
     }
 
     public static void greatDeed(PlayerEntity playerEntity) {
-        if (getDevotion(playerEntity) < follower)
-            setDevotion(playerEntity, follower);
-        else if (getDevotion(playerEntity) < worshipper)
-            setDevotion(playerEntity, worshipper);
-        else if (getDevotion(playerEntity) < devotee)
-            setDevotion(playerEntity, devotee);
+        increaseDevotion(playerEntity, RealmOfAlora.config.roaDevotionConfig.GREAT_DEED_BONUS_DEVOTION);
+        // Maybe other stuff here at some point
     }
 
     public static void greatMisdeed(PlayerEntity playerEntity) {
+        // Drop devotion to next threshold
         if (getDevotion(playerEntity) > worshipper)
             setDevotion(playerEntity, worshipper);
         else if (getDevotion(playerEntity) > follower)

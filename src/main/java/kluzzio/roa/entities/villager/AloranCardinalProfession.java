@@ -33,12 +33,15 @@ public class AloranCardinalProfession {
         // Register
         Registry.register(Registry.VILLAGER_PROFESSION, RealmOfAlora.ID("aloran_cardinal"), ALORAN_CARDINAL);
 
-        // New Trades
+        /* New Trades */
+        // Level 1
         TradeOfferHelper.registerVillagerOffers(ALORAN_CARDINAL, 1,
                 factories -> factories.add(
                         TradeFactory.createTrade(
                                 Items.AMETHYST_SHARD, 32, Items.ENDER_PEARL, 4,
                                 BlocksInit.ROA_BLOCKS.get(BlocksID.CHALICE_OF_ALORA).asItem(), 1,
-                                1, 1, 1)));
+                                1, 1, 1)
+                )
+        );
     }
 }
