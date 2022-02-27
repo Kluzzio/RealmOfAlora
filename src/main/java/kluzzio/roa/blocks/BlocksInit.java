@@ -17,7 +17,7 @@ public class BlocksInit {
 
     //Blocks
     public static final AltarOfAloraBlock ALTAR_OF_ALORA = new AltarOfAloraBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 4.0f).requiresTool());
-    public static final ChaliceOfAloraBlock CHALICE_OF_ALORA = new ChaliceOfAloraBlock(FabricBlockSettings.of(Material.METAL).strength(4.0f, 8.0f));
+    public static final ChaliceOfAloraBlock CHALICE_OF_ALORA = new ChaliceOfAloraBlock(FabricBlockSettings.of(Material.METAL).strength(1.0f, 8.0f));
 
     //EnumMap
     public static final EnumMap<BlocksID, Block> ROA_BLOCKS = new EnumMap<>(BlocksID.class);

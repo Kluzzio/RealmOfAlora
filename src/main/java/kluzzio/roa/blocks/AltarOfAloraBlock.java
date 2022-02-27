@@ -19,7 +19,7 @@ public class AltarOfAloraBlock extends Block {
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
-            if (world.getBlockState(pos.offset(Direction.Axis.Y, 1)).getBlock() == BlocksInit.ROA_BLOCKS.get(BlocksID.CHALICE_OF_ALORA)) {
+            if (world.getBlockState(pos.offset(Direction.Axis.Y, 1)).isOf(BlocksInit.ROA_BLOCKS.get(BlocksID.CHALICE_OF_ALORA))) {
                 //TODO make skill tree 4head
                 player.heal(2);
                 return ActionResult.CONSUME;

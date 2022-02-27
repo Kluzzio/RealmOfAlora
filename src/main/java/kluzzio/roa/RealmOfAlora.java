@@ -2,6 +2,7 @@ package kluzzio.roa;
 
 import kluzzio.roa.config.RoaConfig;
 import kluzzio.roa.blocks.BlocksInit;
+import kluzzio.roa.entities.villager.AloranCardinalProfession;
 import kluzzio.roa.items.ItemsInit;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.api.ModInitializer;
@@ -27,5 +28,8 @@ public class RealmOfAlora implements ModInitializer {
 		//Item Creation
 		//ItemsInit.init();
 		BlocksInit.init();
+
+		//Entities
+		AloranCardinalProfession.init();
 	}
 }
