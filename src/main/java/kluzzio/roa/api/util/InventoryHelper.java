@@ -1,7 +1,7 @@
 package kluzzio.roa.api.util;
 
-import kluzzio.roa.enums.ItemsID;
-import kluzzio.roa.items.ItemsInit;
+import kluzzio.roa.blocks.BlocksInit;
+import kluzzio.roa.enums.BlocksID;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
@@ -34,6 +34,6 @@ public class InventoryHelper {
     }
 
     public static boolean roa$hasChalice(PlayerEntity playerEntity) {
-        return InventoryHelper.roa$hasItem(playerEntity, ItemsInit.ROA_ITEMS.get(ItemsID.CHALICE_OF_ALORA));
+        return InventoryHelper.roa$hasItem(playerEntity, BlocksInit.ROA_BLOCKS.get(BlocksID.CHALICE_OF_ALORA).asItem());
     }
 }

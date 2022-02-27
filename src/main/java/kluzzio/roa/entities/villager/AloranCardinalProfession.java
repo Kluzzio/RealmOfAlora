@@ -3,7 +3,9 @@ package kluzzio.roa.entities.villager;
 import kluzzio.roa.RealmOfAlora;
 import kluzzio.roa.blocks.BlocksInit;
 import kluzzio.roa.enums.BlocksID;
+import kluzzio.roa.enums.ItemsID;
 import kluzzio.roa.factories.TradeFactory;
+import kluzzio.roa.items.ItemsInit;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
@@ -26,7 +28,7 @@ public class AloranCardinalProfession {
             VillagerProfessionBuilder.create()
                     .id(RealmOfAlora.ID("aloran_cardinal"))
                     .workstation(ALORAN_CARDINAL_POI)
-                    .workSound(SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME)
+                    .workSound(SoundEvents.BLOCK_AMETHYST_CLUSTER_PLACE)
                     .build();
 
     public static void init() {
@@ -38,9 +40,18 @@ public class AloranCardinalProfession {
         TradeOfferHelper.registerVillagerOffers(ALORAN_CARDINAL, 1,
                 factories -> factories.add(
                         TradeFactory.createTrade(
-                                Items.AMETHYST_SHARD, 32, Items.ENDER_PEARL, 4,
+                                Items.AMETHYST_SHARD, 32,
                                 BlocksInit.ROA_BLOCKS.get(BlocksID.CHALICE_OF_ALORA).asItem(), 1,
-                                1, 1, 1)
+                                8, 8, 1)
+                )
+        );
+        // Level 3
+        TradeOfferHelper.registerVillagerOffers(ALORAN_CARDINAL, 3,
+                factories -> factories.add(
+                        TradeFactory.createTrade(
+                                Items.AMETHYST_SHARD, 16, Items.ENDER_EYE, 4,
+                                ItemsInit.ROA_ITEMS.get(ItemsID.DIVINE_MEDALLION), 1,
+                                8, 4, 1)
                 )
         );
     }

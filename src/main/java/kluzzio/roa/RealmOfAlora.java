@@ -26,7 +26,7 @@ public class RealmOfAlora implements ModInitializer {
 		config = AutoConfig.getConfigHolder(RoaConfig.class).getConfig();
 
 		//Item Creation
-		//ItemsInit.init();
+		ItemsInit.init();
 		BlocksInit.init();
 
 		//Entities

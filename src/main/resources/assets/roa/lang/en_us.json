@@ -1,4 +1,11 @@
 {
   "item.roa.altar_of_alora": "Altar of Alora",
-  "block.roa.altar_of_alora": "Altar of Alora"
+  "block.roa.altar_of_alora": "Altar of Alora",
+
+  "item.roa.chalice_of_alora": "Chalice of Alora",
+  "block.roa.chalice_of_alora": "Chalice of Alora",
+
+  "item.roa.divine_medallion": "Divine Medallion",
+
+  "entity.minecraft.villager.aloran_cardinal": "Aloran Cardinal"
 }

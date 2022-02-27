@@ -5,6 +5,7 @@ import kluzzio.roa.api.interfaces.IDevotionEntity;
 import kluzzio.roa.enums.DevotionID;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Items;
 
 public class FavorHelper {
 
@@ -38,6 +39,8 @@ public class FavorHelper {
 
     public static void greatDeed(PlayerEntity playerEntity) {
         increaseDevotion(playerEntity, RealmOfAlora.config.roaDevotionConfig.GREAT_DEED_BONUS_DEVOTION);
+        if (getDevotion(playerEntity) == devotee)
+            ItemHelper.roa$dropItem(playerEntity, Items.AMETHYST_SHARD);
         // Maybe other stuff here at some point
     }
 
