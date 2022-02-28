@@ -3,7 +3,6 @@ package kluzzio.roa.blocks.blockentities;
 import kluzzio.roa.blocks.BlocksInit;
 import kluzzio.roa.enums.BlocksID;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.registry.Registry;
 

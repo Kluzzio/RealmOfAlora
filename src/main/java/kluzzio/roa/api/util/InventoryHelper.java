@@ -10,14 +10,7 @@ import net.minecraft.item.ItemStack;
 public class InventoryHelper {
 
     public static boolean roa$hasItem(PlayerEntity playerEntity, Item item) {
-        PlayerInventory playerInventory = playerEntity.getInventory();
-        for (int slotID = 0; slotID < playerInventory.size(); slotID++) {
-            ItemStack currentStack = playerInventory.getStack(slotID);
-            if (currentStack.getItem() == item) {
-                return true;
-            }
-        }
-        return false;
+        return roa$hasItem(playerEntity, item, 1);
     }
 
     public static boolean roa$hasItem(PlayerEntity playerEntity, Item item, int count) {
@@ -31,6 +24,17 @@ public class InventoryHelper {
             }
         }
         return false;
+    }
+
+    public static int roa$countItem(PlayerEntity playerEntity, Item item) {
+        PlayerInventory playerInventory = playerEntity.getInventory();
+        int count = 0;
+        for (int slotID = 0; slotID < playerInventory.size(); slotID++) {
+            ItemStack currentStack = playerInventory.getStack(slotID);
+            if (currentStack.getItem() == item)
+                count += currentStack.getCount();
+        }
+        return count;
     }
 
     public static boolean roa$hasChalice(PlayerEntity playerEntity) {
