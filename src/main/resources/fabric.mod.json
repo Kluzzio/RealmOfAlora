@@ -16,6 +16,9 @@
   "entrypoints": {
     "main": [
       "kluzzio.roa.RealmOfAlora"
+    ],
+    "client": [
+      "kluzzio.roa.gui.ScreenClientInit"
     ]
   },
   "mixins": [

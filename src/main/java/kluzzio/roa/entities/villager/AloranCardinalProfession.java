@@ -4,7 +4,7 @@ import kluzzio.roa.RealmOfAlora;
 import kluzzio.roa.blocks.BlocksInit;
 import kluzzio.roa.enums.BlocksID;
 import kluzzio.roa.enums.ItemsID;
-import kluzzio.roa.factories.TradeFactory;
+import kluzzio.roa.factories.AloranTradeFactory;
 import kluzzio.roa.items.ItemsInit;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
@@ -39,7 +39,7 @@ public class AloranCardinalProfession {
         // Level 1
         TradeOfferHelper.registerVillagerOffers(ALORAN_CARDINAL, 1,
                 factories -> factories.add(
-                        TradeFactory.createTrade(
+                        AloranTradeFactory.createTrade(
                                 Items.AMETHYST_SHARD, 32,
                                 BlocksInit.ROA_BLOCKS.get(BlocksID.CHALICE_OF_ALORA).asItem(), 1,
                                 8, 8, 1)
@@ -48,7 +48,7 @@ public class AloranCardinalProfession {
         // Level 3
         TradeOfferHelper.registerVillagerOffers(ALORAN_CARDINAL, 3,
                 factories -> factories.add(
-                        TradeFactory.createTrade(
+                        AloranTradeFactory.createTrade(
                                 Items.AMETHYST_SHARD, 16, Items.ENDER_EYE, 4,
                                 ItemsInit.ROA_ITEMS.get(ItemsID.DIVINE_MEDALLION), 1,
                                 8, 4, 1)

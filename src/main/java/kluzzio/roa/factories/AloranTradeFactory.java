@@ -8,13 +8,13 @@ import net.minecraft.village.TradeOffers;
 
 import java.util.Random;
 
-public record TradeFactory(TradeOffer trade) implements TradeOffers.Factory {
+public record AloranTradeFactory(TradeOffer trade) implements TradeOffers.Factory {
 
-    public static TradeFactory createTrade(
+    public static AloranTradeFactory createTrade(
             Item buySlot1, int buyAmount1,
             Item sellSlot, int sellAmount,
             int maxUses, int merchantExperience, float priceMultiplier) {
-        return new TradeFactory(new TradeOffer(
+        return new AloranTradeFactory(new TradeOffer(
                 // Buying
                 new ItemStack(buySlot1, buyAmount1),
                 // Selling
@@ -23,11 +23,11 @@ public record TradeFactory(TradeOffer trade) implements TradeOffers.Factory {
                 maxUses, merchantExperience, priceMultiplier));
     }
 
-    public static TradeFactory createTrade(
+    public static AloranTradeFactory createTrade(
             Item buySlot1, int buyAmount1, Item buySlot2, int buyAmount2,
             Item sellSlot, int sellAmount,
             int maxUses, int merchantExperience, float priceMultiplier) {
-        return new TradeFactory(new TradeOffer(
+        return new AloranTradeFactory(new TradeOffer(
                 // Buying
                 new ItemStack(buySlot1, buyAmount1),
                 new ItemStack(buySlot2, buyAmount2),
