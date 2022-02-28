@@ -2,10 +2,7 @@ package kluzzio.roa.blocks;
 
 import kluzzio.roa.blocks.blockentities.AltarOfAloraBlockEntity;
 import kluzzio.roa.enums.BlocksID;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -40,5 +37,11 @@ public class AltarOfAloraBlock extends BlockWithEntity implements BlockEntityPro
     public AltarOfAloraBlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         //Spawns Block Entity alongside block which makes them connected
         return new AltarOfAloraBlockEntity(pos, state);
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        // With inheriting from BlockWithEntity this defaults to INVISIBLE, so we need to change that!
+        return BlockRenderType.MODEL;
     }
 }
