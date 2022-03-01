@@ -1,14 +1,21 @@
 package kluzzio.roa.gui.skilltree;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import kluzzio.roa.gui.skilltree.buttons.EffectButton;
+import kluzzio.roa.gui.skilltree.buttons.SoundButton;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+
+import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class AltarScreen extends HandledScreen<AltarScreenHandler> {
@@ -34,6 +41,8 @@ public class AltarScreen extends HandledScreen<AltarScreenHandler> {
         renderBackground(matrices);
         super.render(matrices, mouseX, mouseY, delta);
         drawMouseoverTooltip(matrices, mouseX, mouseY);
+        final List<ClickableWidget> buttons = Screens.getButtons(this);
+        buttons.add(new EffectButton(this, (this.width / 2 - 10), ((this.height / 2) - 10), 20, 20));
     }
 
     @Override

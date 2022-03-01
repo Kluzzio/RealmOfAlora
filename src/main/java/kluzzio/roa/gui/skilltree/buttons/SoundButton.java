@@ -1,7 +1,5 @@
 package kluzzio.roa.gui.skilltree.buttons;
 
-import java.util.Random;
-
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.PressableWidget;
@@ -11,7 +9,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 
 public class SoundButton extends PressableWidget {
-    private static final Random RANDOM = new Random();
 
     public SoundButton(int x, int y, int width, int height) {
         super(x, y, width, height, Text.of("Sound Button"));

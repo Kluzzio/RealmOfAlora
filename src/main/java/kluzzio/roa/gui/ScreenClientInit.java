@@ -1,6 +1,5 @@
 package kluzzio.roa.gui;
 
-import com.mojang.authlib.minecraft.client.MinecraftClient;
 import com.mojang.blaze3d.systems.RenderSystem;
 import kluzzio.roa.RealmOfAlora;
 import kluzzio.roa.gui.skilltree.AltarScreen;
@@ -48,7 +47,7 @@ public class ScreenClientInit implements ClientModInitializer {
             // Add a new button
             buttons.add(new SoundButton((screen.width / 2) + 2, ((screen.height / 4) + 96), 72, 20));
             // And another button
-            buttons.add(new StopSoundButton(screen, (screen.width / 2) + 80, ((screen.height / 4) + 95), 20, 20));
+            //buttons.add(new StopSoundButton(screen, (screen.width / 2) + 80, ((screen.height / 4) + 95), 20, 20));
 
             // Testing:
             // Some automatic validation that the screen list works, make sure the buttons we added are on the list of child elements
@@ -57,10 +56,10 @@ public class ScreenClientInit implements ClientModInitializer {
                     .findAny()
                     .orElseThrow(() -> new AssertionError("Failed to find the \"Sound\" button in the screen's elements"));
 
-            screen.children().stream()
-                    .filter(element -> element instanceof StopSoundButton)
-                    .findAny()
-                    .orElseThrow(() -> new AssertionError("Failed to find the \"Stop Sound\" button in the screen's elements"));
+            //screen.children().stream()
+            //        .filter(element -> element instanceof StopSoundButton)
+            //        .findAny()
+            //        .orElseThrow(() -> new AssertionError("Failed to find the \"Stop Sound\" button in the screen's elements"));
 
             // Register render event to draw an icon on the screen
             ScreenEvents.afterRender(screen).register((_screen, matrices, mouseX, mouseY, tickDelta) -> {
