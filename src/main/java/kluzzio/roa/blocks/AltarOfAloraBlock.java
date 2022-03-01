@@ -2,7 +2,6 @@ package kluzzio.roa.blocks;
 
 import kluzzio.roa.blocks.blockentities.AltarOfAloraBlockEntity;
 import kluzzio.roa.enums.BlocksID;
-import kluzzio.roa.gui.skilltree.AltarScreenHandler;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -19,6 +18,18 @@ public class AltarOfAloraBlock extends BlockWithEntity implements BlockEntityPro
         super(settings);
     }
 
+    @Override
+    public AltarOfAloraBlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        //Spawns Block Entity alongside block which makes them connected
+        return new AltarOfAloraBlockEntity(pos, state);
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        // With inheriting from BlockWithEntity this defaults to INVISIBLE, so we need to change that!
+        return BlockRenderType.MODEL;
+    }
+
     @SuppressWarnings("deprecation")
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
@@ -30,21 +41,8 @@ public class AltarOfAloraBlock extends BlockWithEntity implements BlockEntityPro
                     //With this call the server will request the client to open the appropriate Screenhandler
                     player.openHandledScreen(screenHandlerFactory);
                 }
-                return ActionResult.CONSUME;
             }
         }
         return ActionResult.SUCCESS;
-    }
-
-    @Override
-    public AltarOfAloraBlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        //Spawns Block Entity alongside block which makes them connected
-        return new AltarOfAloraBlockEntity(pos, state);
-    }
-
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        // With inheriting from BlockWithEntity this defaults to INVISIBLE, so we need to change that!
-        return BlockRenderType.MODEL;
     }
 }
