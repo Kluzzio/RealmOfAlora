@@ -38,7 +38,8 @@ public class RealmOfAlora implements ModInitializer {
 	public void onInitialize() {
 
 		ServerPlayNetworking.registerGlobalReceiver(ID("effect_value"), (server, player, handler, buf, responseSender) -> {
-			player.giveItemStack(new ItemStack(Items.EMERALD));
+			if (buf.readBoolean())
+				player.giveItemStack(new ItemStack(Items.EMERALD));
 		});
 
 		//Config
