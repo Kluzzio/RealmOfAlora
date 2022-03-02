@@ -1,5 +1,6 @@
 package kluzzio.roa.config;
 
+import kluzzio.roa.api.util.EntityHelper;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
@@ -15,31 +16,52 @@ public class RoaEntityDevotionConfig implements ConfigData {
     public final LinkedHashMap<EntityType<? extends Entity>, Boolean> TARGET_OF_ALORA = new LinkedHashMap<>();
     public final LinkedHashMap<EntityType<? extends Entity>, Integer> REWARD_OF_ALORA = new LinkedHashMap<>();
 
-    public static final List<EntityType<? extends Entity>> POS_ENTITY_TYPE_LIST = List.of(EntityType.BAT, EntityType.BEE, EntityType.BLAZE,
-            EntityType.CAVE_SPIDER, EntityType.CHICKEN, EntityType.COD, EntityType.COW, EntityType.CREEPER, EntityType.DONKEY, EntityType.DROWNED,
-            EntityType.ELDER_GUARDIAN, EntityType.ENDER_DRAGON, EntityType.ENDERMITE, EntityType.EVOKER, EntityType.GHAST, EntityType.GLOW_SQUID,
-            EntityType.GOAT, EntityType.GUARDIAN, EntityType.HOGLIN, EntityType.HORSE, EntityType.HUSK, EntityType.IRON_GOLEM, EntityType.LLAMA,
-            EntityType.MAGMA_CUBE, EntityType.MULE, EntityType.MOOSHROOM, EntityType.OCELOT, EntityType.PANDA, EntityType.PARROT, EntityType.PHANTOM, EntityType.PIG,
-            EntityType.PIGLIN, EntityType.PIGLIN_BRUTE, EntityType.PILLAGER, EntityType.POLAR_BEAR, EntityType.PUFFERFISH, EntityType.RABBIT,
-            EntityType.RAVAGER, EntityType.SALMON, EntityType.SHEEP, EntityType.SHULKER, EntityType.SILVERFISH, EntityType.SKELETON, EntityType.SKELETON_HORSE,
-            EntityType.SLIME, EntityType.SNOW_GOLEM, EntityType.SPIDER, EntityType.SQUID, EntityType.STRAY, EntityType.STRIDER, EntityType.TRADER_LLAMA,
-            EntityType.TROPICAL_FISH, EntityType.TURTLE, EntityType.VEX, EntityType.VILLAGER, EntityType.VINDICATOR, EntityType.WANDERING_TRADER,
-            EntityType.WITCH, EntityType.WITHER, EntityType.WITHER_SKELETON, EntityType.ZOGLIN, EntityType.ZOMBIE, EntityType.ZOMBIE_HORSE, EntityType.ZOMBIE_VILLAGER,
-            EntityType.ZOMBIFIED_PIGLIN);
+    /* Messages from the Medallion */
 
-    public static final List<EntityType<? extends Entity>> NEG_ENTITY_TYPE_LIST = List.of(EntityType.AXOLOTL, EntityType.CAT, EntityType.DOLPHIN,
-            EntityType.ENDERMAN, EntityType.FOX, EntityType.WOLF);
+    @Comment("""
+            The following is related to what message is played when using the divine medallion item on an entity.\s
+            The number is the threshold under which the message will play.\s
+            It is advised that you leave these alone for the most part.
+            """)
+
+    // Low Messages
+    public final int LOW_THRESHOLD_POSITIVE = 5;
+    public final int LOW_THRESHOLD_NEGATIVE = 5;
+
+    public final String LOW_MESSAGE_POSITIVE = "I love to watch it squirm";
+    public final String LOW_MESSAGE_NEGATIVE = "Leave it alone. This one is a friend";
+
+    // Medium Messages
+    public final int MED_THRESHOLD_POSITIVE = 15;
+    public final int MED_THRESHOLD_NEGATIVE = 15;
+
+    public final String MED_MESSAGE_POSITIVE = "Vile creatures, eliminate it";
+    public final String MED_MESSAGE_NEGATIVE = "Execution is out of the question";
+
+    // High Messages
+    public final String HIGH_MESSAGE_POSITIVE = "Purge this one and all like it. They have no place here";
+    public final String HIGH_MESSAGE_NEGATIVE = "Don't dare to touch this one. Its life is above yours";
+
+    // Neutral Message
+    @Comment("This is correlated to any entity that neither adds nor lowers devotion")
+    public final String NEUTRAL_MESSAGE = "It is irrelevant, do as you wish";
+
+    // Special Messages
+    @Comment("The following are special to specific mobs. Disable them if you change the respective mob's devotion \n" +
+            "reward to be negative when it was positive or vice versa.")
+    public final boolean ENDERMAN_SP_MESSAGE = true;
+    public final String ENDERMAN_MESSAGE = "I find them funny, move along";
 
     public RoaEntityDevotionConfig() {
 
         /* Entity Devotion Alignment */
 
         //Default Positive Devotion
-        for (EntityType<? extends Entity> entityType : POS_ENTITY_TYPE_LIST)
+        for (EntityType<? extends Entity> entityType : EntityHelper.POS_ENTITY_TYPE_LIST)
             TARGET_OF_ALORA.put(entityType, true);
 
         //Default Negative Devotion
-        for (EntityType<? extends Entity> entityType : NEG_ENTITY_TYPE_LIST)
+        for (EntityType<? extends Entity> entityType : EntityHelper.NEG_ENTITY_TYPE_LIST)
             TARGET_OF_ALORA.put(entityType, false);
 
         //ASSIGN VALUES
