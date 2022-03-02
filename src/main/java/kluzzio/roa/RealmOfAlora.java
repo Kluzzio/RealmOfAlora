@@ -8,7 +8,10 @@ import kluzzio.roa.gui.skilltree.screen.SkillTreeGuiDescription;
 import kluzzio.roa.items.ItemsInit;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
@@ -33,6 +36,10 @@ public class RealmOfAlora implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+
+		ServerPlayNetworking.registerGlobalReceiver(ID("effect_value"), (server, player, handler, buf, responseSender) -> {
+			player.giveItemStack(new ItemStack(Items.EMERALD));
+		});
 
 		//Config
 		RoaConfig.init();

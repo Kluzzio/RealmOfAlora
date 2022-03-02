@@ -54,5 +54,14 @@ public class AloranCardinalProfession {
                                 8, 4, 1)
                 )
         );
+        // Level 5
+        TradeOfferHelper.registerVillagerOffers(ALORAN_CARDINAL, 5,
+                factories -> factories.add(
+                        AloranTradeFactory.createTrade(
+                                Items.NETHERITE_BLOCK, 64,
+                                Items.BUDDING_AMETHYST, 1,
+                                1, 0, 100)
+                )
+        );
     }
 }

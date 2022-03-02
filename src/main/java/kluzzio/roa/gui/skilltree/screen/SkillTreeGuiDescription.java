@@ -7,10 +7,22 @@ import io.github.cottonmc.cotton.gui.widget.WSprite;
 import io.github.cottonmc.cotton.gui.widget.WToggleButton;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import kluzzio.roa.RealmOfAlora;
+import kluzzio.roa.gui.skilltree.buttons.EffectButton;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.tag.Tag;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
+
+import java.util.Set;
 
 public class SkillTreeGuiDescription extends SyncedGuiDescription {
     private static final int INVENTORY_SIZE = 1;
@@ -29,16 +41,31 @@ public class SkillTreeGuiDescription extends SyncedGuiDescription {
         WSprite buttonImg = new WSprite(new Identifier("minecraft:textures/item/amethyst_shard.png"));
         root.add(buttonImg, 100, 10, 18, 18);
 
-        // If I want the Player Inventory. I currently don't
-        //root.add(this.createPlayerInventoryPanel(), 0, 3);
+        // Change to nbt check
 
-        WToggleButton toggleButton = new WToggleButton(new LiteralText("This is a toggle button."));
-        toggleButton.setOnToggle(on -> {
-            // This code runs on the client when you toggle the button.
-            System.out.println("Toggle button toggled to " + (on ? "on" : "off"));
-        });
+        /*
+        if(!child.hasnbt) {
+            root.add(child);
+            if (!parent.hasnbt)
+                root.add(parent);
+            }
+        }
+        */
 
-        root.add(toggleButton, 100, 10, 18, 18);
+        if (!playerInventory.contains(new ItemStack(Items.EMERALD))) {
+
+            EffectButton toggleButton = new EffectButton();
+            toggleButton.setOnToggle(on -> {
+                // This code runs on the client when you toggle the button.
+                System.out.println("Toggle button toggled to " + (on ? "on" : "off"));
+                PacketByteBuf buf = PacketByteBufs.create();
+                buf.writeBoolean(true);
+
+                ClientPlayNetworking.send(RealmOfAlora.ID("effect_value"), buf);
+                root.remove(toggleButton);
+            });
+            root.add(toggleButton, 100, 10, 18, 18);
+        }
 
         root.validate(this);
     }
