@@ -2,9 +2,9 @@ package kluzzio.roa.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import kluzzio.roa.RealmOfAlora;
-import kluzzio.roa.gui.skilltree.AltarScreen;
 import kluzzio.roa.gui.skilltree.buttons.SoundButton;
-import kluzzio.roa.gui.skilltree.buttons.StopSoundButton;
+import kluzzio.roa.gui.skilltree.screen.SkillTreeGuiDescription;
+import kluzzio.roa.gui.skilltree.screen.SkillTreeGuiScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -25,16 +25,20 @@ public class ScreenClientInit implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        ScreenRegistry.register(RealmOfAlora.ALTAR_SCREEN_HANDLER, AltarScreen::new);
-        //LOGGER.info("Started Screen Testmod");
-        ScreenEvents.BEFORE_INIT.register((client, screen, width, height) -> {
-            // TODO: Write tests listening to addition of child elements
-        });
 
-        ScreenEvents.AFTER_INIT.register(this::afterInitScreen);
+        //noinspection RedundantTypeArguments Otherwise it breaks
+        ScreenRegistry.<SkillTreeGuiDescription, SkillTreeGuiScreen>register(RealmOfAlora.SCREEN_HANDLER_TYPE, (gui, inventory, title) ->
+                new SkillTreeGuiScreen(gui, inventory.player, title));
+
+        ////LOGGER.info("Started Screen Testmod");
+        //ScreenEvents.BEFORE_INIT.register((client, screen, width, height) -> {
+        //    // TODO: Write tests listening to addition of child elements
+        //});
+
+        //ScreenEvents.AFTER_INIT.register(this::afterInitScreen);
     }
 
-    private void afterInitScreen(net.minecraft.client.MinecraftClient client, Screen screen, int windowWidth, int windowHeight) {
+    /*private void afterInitScreen(net.minecraft.client.MinecraftClient client, Screen screen, int windowWidth, int windowHeight) {
         //LOGGER.info("Initializing {}", screen.getClass().getName());
 
         if (screen instanceof TitleScreen) {
@@ -77,6 +81,5 @@ public class ScreenClientInit implements ClientModInitializer {
                 //LOGGER.warn("Pressed, Code: {}, Scancode: {}, Modifiers: {}", key, scancode, modifiers);
             });
         }
-    }
-
+    }*/
 }

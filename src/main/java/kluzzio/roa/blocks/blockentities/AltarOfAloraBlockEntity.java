@@ -1,12 +1,13 @@
 package kluzzio.roa.blocks.blockentities;
 
-import kluzzio.roa.gui.skilltree.AltarScreenHandler;
+import kluzzio.roa.gui.skilltree.screen.SkillTreeGuiDescription;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
@@ -21,7 +22,7 @@ public class AltarOfAloraBlockEntity extends BlockEntity implements NamedScreenH
     @org.jetbrains.annotations.Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new AltarScreenHandler(syncId, inv);
+        return new SkillTreeGuiDescription(syncId, inv, ScreenHandlerContext.create(world, pos));
     }
 
     @Override

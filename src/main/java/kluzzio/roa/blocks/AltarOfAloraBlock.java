@@ -2,12 +2,8 @@ package kluzzio.roa.blocks;
 
 import kluzzio.roa.blocks.blockentities.AltarOfAloraBlockEntity;
 import kluzzio.roa.enums.BlocksID;
-import kluzzio.roa.gui.skilltree.screen.SkillTreeGui;
-import kluzzio.roa.gui.skilltree.screen.SkillTreeGuiScreen;
 import net.minecraft.block.*;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -37,7 +33,7 @@ public class AltarOfAloraBlock extends BlockWithEntity implements BlockEntityPro
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
             if (world.getBlockState(pos.offset(Direction.Axis.Y, 1)).isOf(BlocksInit.ROA_BLOCKS.get(BlocksID.CHALICE_OF_ALORA))) {
-                MinecraftClient.getInstance().setScreen(new SkillTreeGuiScreen(new SkillTreeGui()));
+                player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
             }
         }
         return ActionResult.SUCCESS;
