@@ -6,6 +6,7 @@ import kluzzio.roa.api.util.FavorHelper;
 import kluzzio.roa.config.RoaEntityDevotionConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -42,6 +43,12 @@ public class DivineMedallion extends Item {
         String stringToSend;
         if (EntityHelper.validEntityType(le)) {
             RoaEntityDevotionConfig rEDC = RealmOfAlora.config.roaEntityDevotionConfig;
+            //Special Entity
+            if (le instanceof EndermanEntity && rEDC.ENDERMAN_SP_MESSAGE) {
+                stringToSend = rEDC.ENDERMAN_MESSAGE;
+                player.sendMessage(Text.of(stringToSend), true);
+                return true;
+            }
             int devotion = rEDC.REWARD_OF_ALORA.get(le.getType());
             //Entity rewards no devotion
             if (devotion == 0) {
