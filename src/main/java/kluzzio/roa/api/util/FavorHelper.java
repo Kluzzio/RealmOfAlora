@@ -19,6 +19,8 @@ public class FavorHelper {
     public static final int devotee = // 1000
             RealmOfAlora.config.roaDevotionConfig.DEVOTION_THRESHOLDS.get(DevotionID.DEVOTEE);
 
+    // Integral core methods
+
     public static int getDevotion(PlayerEntity pe) {
         return ((IDevotionEntity) pe).getDevotion();
     }
@@ -37,17 +39,7 @@ public class FavorHelper {
         setDevotion(pe, f - a);
     }
 
-    public static void greatDeed(PlayerEntity pe) {
-        increaseDevotion(pe, RealmOfAlora.config.roaDevotionConfig.GREAT_DEED_BONUS_DEVOTION);
-        if (getDevotion(pe) == devotee)
-            ItemHelper.roa$dropItem(pe, Items.AMETHYST_SHARD);
-        // Maybe other stuff here at some point
-    }
-
-    public static void greatMisdeed(PlayerEntity pe) {
-        // Drop devotion to next threshold
-        setDevotion(pe, getThreshold(pe));
-    }
+    // Event based / triggered methods
 
     public static void deathDevotionChange(PlayerEntity pe, LivingEntity le) {
         if (EntityHelper.validEntityType(le)) {
@@ -60,6 +52,32 @@ public class FavorHelper {
             else
                 decreaseDevotion(pe, devotion);
         }
+    }
+
+    public static void greatDeed(PlayerEntity pe) {
+        increaseDevotion(pe, RealmOfAlora.config.roaDevotionConfig.GREAT_DEED_BONUS_DEVOTION);
+        if (getDevotion(pe) == devotee)
+            ItemHelper.roa$dropItem(pe, Items.AMETHYST_SHARD);
+        // Maybe other stuff here at some point
+    }
+
+    public static void greatMisdeed(PlayerEntity pe) {
+        // Drop devotion to next threshold
+        setDevotion(pe, getThreshold(pe));
+    }
+
+    // Threshold Methods
+
+    public static int getThreshold(PlayerEntity pe) {
+        if (isBlind(pe))
+            return blind;
+        else if (isFollower(pe))
+            return follower;
+        else if (isWorshipper(pe))
+            return worshipper;
+        else if (isDevotee(pe))
+            return devotee;
+        else return getDevotion(pe);
     }
 
     public static boolean isBlind(PlayerEntity pe) {
@@ -81,15 +99,4 @@ public class FavorHelper {
         return getDevotion(pe) >= devotee;
     }
 
-    public static int getThreshold(PlayerEntity pe) {
-        if (isBlind(pe))
-            return blind;
-        else if (isFollower(pe))
-            return follower;
-        else if (isWorshipper(pe))
-            return worshipper;
-        else if (isDevotee(pe))
-            return devotee;
-       else return getDevotion(pe);
-    }
 }
