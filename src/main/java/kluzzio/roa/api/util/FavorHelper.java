@@ -19,51 +19,77 @@ public class FavorHelper {
     public static final int devotee = // 1000
             RealmOfAlora.config.roaDevotionConfig.DEVOTION_THRESHOLDS.get(DevotionID.DEVOTEE);
 
-    public static int getDevotion(PlayerEntity playerEntity) {
-        return ((IDevotionEntity) playerEntity).getDevotion();
+    public static int getDevotion(PlayerEntity pe) {
+        return ((IDevotionEntity) pe).getDevotion();
     }
 
-    public static void setDevotion(PlayerEntity playerEntity, int amount) {
-        ((IDevotionEntity) playerEntity).setDevotion(amount);
+    public static void setDevotion(PlayerEntity pe, int a) {
+        ((IDevotionEntity) pe).setDevotion(a);
     }
 
-    public static void increaseDevotion(PlayerEntity playerEntity, int amount) {
-        int f = getDevotion(playerEntity);
-        setDevotion(playerEntity, f + amount);
+    public static void increaseDevotion(PlayerEntity pe, int a) {
+        int f = getDevotion(pe);
+        setDevotion(pe, f + a);
     }
 
-    public static void decreaseDevotion(PlayerEntity playerEntity, int amount) {
-        int f = getDevotion(playerEntity);
-        setDevotion(playerEntity, f - amount);
+    public static void decreaseDevotion(PlayerEntity pe, int a) {
+        int f = getDevotion(pe);
+        setDevotion(pe, f - a);
     }
 
-    public static void greatDeed(PlayerEntity playerEntity) {
-        increaseDevotion(playerEntity, RealmOfAlora.config.roaDevotionConfig.GREAT_DEED_BONUS_DEVOTION);
-        if (getDevotion(playerEntity) == devotee)
-            ItemHelper.roa$dropItem(playerEntity, Items.AMETHYST_SHARD);
+    public static void greatDeed(PlayerEntity pe) {
+        increaseDevotion(pe, RealmOfAlora.config.roaDevotionConfig.GREAT_DEED_BONUS_DEVOTION);
+        if (getDevotion(pe) == devotee)
+            ItemHelper.roa$dropItem(pe, Items.AMETHYST_SHARD);
         // Maybe other stuff here at some point
     }
 
-    public static void greatMisdeed(PlayerEntity playerEntity) {
+    public static void greatMisdeed(PlayerEntity pe) {
         // Drop devotion to next threshold
-        if (getDevotion(playerEntity) > worshipper)
-            setDevotion(playerEntity, worshipper);
-        else if (getDevotion(playerEntity) > follower)
-            setDevotion(playerEntity, follower);
-        else if (getDevotion(playerEntity) > blind)
-            setDevotion(playerEntity, blind);
+        setDevotion(pe, getThreshold(pe));
     }
 
-    public static void deathDevotionChange(PlayerEntity playerEntity, LivingEntity livingEntity) {
-        if (EntityHelper.validEntityType(livingEntity)) {
-            int devotion = RealmOfAlora.config.roaEntityDevotionConfig.REWARD_OF_ALORA.get(livingEntity.getType());
+    public static void deathDevotionChange(PlayerEntity pe, LivingEntity le) {
+        if (EntityHelper.validEntityType(le)) {
+            int devotion = RealmOfAlora.config.roaEntityDevotionConfig.REWARD_OF_ALORA.get(le.getType());
 
-            if (RealmOfAlora.config.roaEntityDevotionConfig.TARGET_OF_ALORA.get(livingEntity.getType())) {
-                if (InventoryHelper.roa$hasChalice(playerEntity))
-                    increaseDevotion(playerEntity, devotion);
+            if (RealmOfAlora.config.roaEntityDevotionConfig.TARGET_OF_ALORA.get(le.getType())) {
+                if (InventoryHelper.roa$hasChalice(pe))
+                    increaseDevotion(pe, devotion);
             }
             else
-                decreaseDevotion(playerEntity, devotion);
+                decreaseDevotion(pe, devotion);
         }
+    }
+
+    public static boolean isBlind(PlayerEntity pe) {
+        int f = getDevotion(pe);
+        return f >= blind && f < follower;
+    }
+
+    public static boolean isFollower(PlayerEntity pe) {
+        int f = getDevotion(pe);
+        return f >= follower && f < worshipper;
+    }
+
+    public static boolean isWorshipper(PlayerEntity pe) {
+        int f = getDevotion(pe);
+        return f >= worshipper && f < devotee;
+    }
+
+    public static boolean isDevotee(PlayerEntity pe) {
+        return getDevotion(pe) >= devotee;
+    }
+
+    public static int getThreshold(PlayerEntity pe) {
+        if (isBlind(pe))
+            return blind;
+        else if (isFollower(pe))
+            return follower;
+        else if (isWorshipper(pe))
+            return worshipper;
+        else if (isDevotee(pe))
+            return devotee;
+       else return getDevotion(pe);
     }
 }
