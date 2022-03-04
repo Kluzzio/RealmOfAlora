@@ -15,6 +15,10 @@ public class RoaEntityDevotionConfig implements ConfigData {
     @Comment("When entity dies, if entity is a TARGET_OF_ALORA, GAIN devotion equal to REWARD_OF_ALORA. Otherwise, LOSE that much.")
     public final LinkedHashMap<EntityType<? extends Entity>, Boolean> TARGET_OF_ALORA = new LinkedHashMap<>();
     public final LinkedHashMap<EntityType<? extends Entity>, Integer> REWARD_OF_ALORA = new LinkedHashMap<>();
+    public final boolean ALLOW_UNRECOGNIZED_MOB_DEVOTION = true;
+    @Comment("This is the divisor for reward. Higher number = less devotion. Negative number = Decreased Devotion. \n" +
+            "Calculation is Mob's Max Health / UNRECOGNIZED_MOBS_REWARD")
+    public final float UNRECOGNIZED_MOBS_REWARD = 20f;
 
     /* Messages from the Medallion */
 

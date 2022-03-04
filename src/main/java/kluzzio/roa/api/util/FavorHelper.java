@@ -2,6 +2,8 @@ package kluzzio.roa.api.util;
 
 import kluzzio.roa.RealmOfAlora;
 import kluzzio.roa.api.interfaces.IDevotionEntity;
+import kluzzio.roa.config.RoaDevotionConfig;
+import kluzzio.roa.config.RoaEntityDevotionConfig;
 import kluzzio.roa.enums.DevotionID;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,15 +11,22 @@ import net.minecraft.item.Items;
 
 public class FavorHelper {
 
+    // Config convenience
+    private static final RoaEntityDevotionConfig ENTITY_CONFIG = RealmOfAlora.config.roaEntityDevotionConfig;
+    private static final RoaDevotionConfig DEVOTION_CONFIG = RealmOfAlora.config.roaDevotionConfig;
+
     // These are thresholds of Devotion
     public static final int blind = // 0
-            RealmOfAlora.config.roaDevotionConfig.DEVOTION_THRESHOLDS.get(DevotionID.BLIND);
+            DEVOTION_CONFIG.DEVOTION_THRESHOLDS.get(DevotionID.BLIND);
     public static final int follower = // 250
-            RealmOfAlora.config.roaDevotionConfig.DEVOTION_THRESHOLDS.get(DevotionID.FOLLOWER);
+            DEVOTION_CONFIG.DEVOTION_THRESHOLDS.get(DevotionID.FOLLOWER);
     public static final int worshipper = // 500
-            RealmOfAlora.config.roaDevotionConfig.DEVOTION_THRESHOLDS.get(DevotionID.WORSHIPPER);
+            DEVOTION_CONFIG.DEVOTION_THRESHOLDS.get(DevotionID.WORSHIPPER);
     public static final int devotee = // 1000
-            RealmOfAlora.config.roaDevotionConfig.DEVOTION_THRESHOLDS.get(DevotionID.DEVOTEE);
+            DEVOTION_CONFIG.DEVOTION_THRESHOLDS.get(DevotionID.DEVOTEE);
+
+    // Config values
+    public static final float DEVOTION_DEFAULT = ENTITY_CONFIG.UNRECOGNIZED_MOBS_REWARD; // 20f
 
     // Integral core methods
 
@@ -43,19 +52,21 @@ public class FavorHelper {
 
     public static void deathDevotionChange(PlayerEntity pe, LivingEntity le) {
         if (EntityHelper.validEntityType(le)) {
-            int devotion = RealmOfAlora.config.roaEntityDevotionConfig.REWARD_OF_ALORA.get(le.getType());
+            int devotion = ENTITY_CONFIG.REWARD_OF_ALORA.get(le.getType());
 
-            if (RealmOfAlora.config.roaEntityDevotionConfig.TARGET_OF_ALORA.get(le.getType())) {
+            if (ENTITY_CONFIG.TARGET_OF_ALORA.get(le.getType())) {
                 if (InventoryHelper.roa$hasChalice(pe))
                     increaseDevotion(pe, devotion);
             }
             else
                 decreaseDevotion(pe, devotion);
-        }
+        } else if (ENTITY_CONFIG.ALLOW_UNRECOGNIZED_MOB_DEVOTION)
+            if (InventoryHelper.roa$hasChalice(pe))
+                increaseDevotion(pe, (int) (le.getMaxHealth() / DEVOTION_DEFAULT));
     }
 
     public static void greatDeed(PlayerEntity pe) {
-        increaseDevotion(pe, RealmOfAlora.config.roaDevotionConfig.GREAT_DEED_BONUS_DEVOTION);
+        increaseDevotion(pe, DEVOTION_CONFIG.GREAT_DEED_BONUS_DEVOTION);
         if (getDevotion(pe) == devotee)
             ItemHelper.roa$dropItem(pe, Items.AMETHYST_SHARD);
         // Maybe other stuff here at some point
