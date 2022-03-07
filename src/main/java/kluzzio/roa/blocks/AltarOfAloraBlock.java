@@ -2,7 +2,10 @@ package kluzzio.roa.blocks;
 
 import kluzzio.roa.blocks.blockentities.AltarOfAloraBlockEntity;
 import kluzzio.roa.enums.BlocksID;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;

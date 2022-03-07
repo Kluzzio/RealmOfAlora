@@ -4,10 +4,10 @@ import kluzzio.roa.api.util.EntityHelper;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 
 @Config(name = "roa_entity_devotion_config")
 public class RoaEntityDevotionConfig implements ConfigData {

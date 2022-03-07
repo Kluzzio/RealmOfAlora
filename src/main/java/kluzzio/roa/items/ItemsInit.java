@@ -1,9 +1,6 @@
 package kluzzio.roa.items;
 
-import kluzzio.roa.blocks.ChaliceOfAloraBlock;
 import kluzzio.roa.enums.ItemsID;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.registry.Registry;
