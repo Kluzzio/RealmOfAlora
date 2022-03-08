@@ -6,34 +6,29 @@ import net.minecraft.entity.LivingEntity;
 
 import java.util.List;
 
+import static net.minecraft.entity.EntityType.*;
+
 public class EntityHelper {
 
-    public static final List<EntityType<? extends Entity>> LIVING_ENTITY_TYPE_LIST = List.of(EntityType.AXOLOTL, EntityType.BAT, EntityType.BEE, EntityType.BLAZE, EntityType.CAT,
-            EntityType.CAVE_SPIDER, EntityType.CHICKEN, EntityType.COD, EntityType.COW, EntityType.CREEPER, EntityType.DOLPHIN, EntityType.DONKEY,
-            EntityType.DROWNED, EntityType.ELDER_GUARDIAN, EntityType.ENDER_DRAGON, EntityType.ENDERMAN, EntityType.ENDERMITE, EntityType.EVOKER,
-            EntityType.FOX, EntityType.GHAST, EntityType.GLOW_SQUID, EntityType.GOAT, EntityType.GUARDIAN, EntityType.HOGLIN, EntityType.HORSE,
-            EntityType.HUSK, EntityType.IRON_GOLEM, EntityType.LLAMA, EntityType.MAGMA_CUBE, EntityType.MULE, EntityType.MOOSHROOM, EntityType.OCELOT,
-            EntityType.PANDA, EntityType.PARROT, EntityType.PHANTOM, EntityType.PIG, EntityType.PIGLIN, EntityType.PIGLIN_BRUTE, EntityType.PILLAGER,
-            EntityType.POLAR_BEAR, EntityType.PUFFERFISH, EntityType.RABBIT, EntityType.RAVAGER, EntityType.SALMON, EntityType.SHEEP, EntityType.SHULKER,
-            EntityType.SILVERFISH, EntityType.SKELETON, EntityType.SKELETON_HORSE, EntityType.SLIME, EntityType.SNOW_GOLEM, EntityType.SPIDER,
-            EntityType.SQUID, EntityType.STRAY, EntityType.STRIDER, EntityType.TRADER_LLAMA, EntityType.TROPICAL_FISH, EntityType.TURTLE, EntityType.VEX,
-            EntityType.VILLAGER, EntityType.VINDICATOR, EntityType.WANDERING_TRADER, EntityType.WITCH, EntityType.WITHER, EntityType.WITHER_SKELETON,
-            EntityType.WOLF, EntityType.ZOGLIN, EntityType.ZOMBIE, EntityType.ZOMBIE_HORSE, EntityType.ZOMBIE_VILLAGER, EntityType.ZOMBIFIED_PIGLIN);
+    public static final List<EntityType<? extends Entity>> LIVING_ENTITY_TYPE_LIST = List.of(AXOLOTL, BAT, BEE, BLAZE,
+            CAT, CAVE_SPIDER, CHICKEN, COD, COW, CREEPER, DOLPHIN, DONKEY, DROWNED, ELDER_GUARDIAN, ENDER_DRAGON,
+            ENDERMAN, ENDERMITE, EVOKER, FOX, GHAST, GLOW_SQUID, GOAT, GUARDIAN, HOGLIN, HORSE, HUSK, IRON_GOLEM, LLAMA,
+            MAGMA_CUBE, MULE, MOOSHROOM, OCELOT, PANDA, PARROT, PHANTOM, PIG, PIGLIN, PIGLIN_BRUTE, PILLAGER, POLAR_BEAR,
+            PUFFERFISH, RABBIT, RAVAGER, SALMON, SHEEP, SHULKER, SILVERFISH, SKELETON, SKELETON_HORSE, SLIME, SNOW_GOLEM,
+            SPIDER, SQUID, STRAY, STRIDER, TRADER_LLAMA, TROPICAL_FISH, TURTLE, VEX, VILLAGER, VINDICATOR,
+            WANDERING_TRADER, WITCH, WITHER, WITHER_SKELETON, WOLF, ZOGLIN, ZOMBIE, ZOMBIE_HORSE, ZOMBIE_VILLAGER,
+            ZOMBIFIED_PIGLIN);
 
-    public static final List<EntityType<? extends Entity>> POS_ENTITY_TYPE_LIST = List.of(EntityType.BAT, EntityType.BEE, EntityType.BLAZE,
-            EntityType.CAVE_SPIDER, EntityType.CHICKEN, EntityType.COD, EntityType.COW, EntityType.CREEPER, EntityType.DONKEY, EntityType.DROWNED,
-            EntityType.ELDER_GUARDIAN, EntityType.ENDER_DRAGON, EntityType.ENDERMITE, EntityType.EVOKER, EntityType.GHAST, EntityType.GLOW_SQUID,
-            EntityType.GOAT, EntityType.GUARDIAN, EntityType.HOGLIN, EntityType.HORSE, EntityType.HUSK, EntityType.IRON_GOLEM, EntityType.LLAMA,
-            EntityType.MAGMA_CUBE, EntityType.MULE, EntityType.MOOSHROOM, EntityType.OCELOT, EntityType.PANDA, EntityType.PARROT, EntityType.PHANTOM, EntityType.PIG,
-            EntityType.PIGLIN, EntityType.PIGLIN_BRUTE, EntityType.PILLAGER, EntityType.POLAR_BEAR, EntityType.PUFFERFISH, EntityType.RABBIT,
-            EntityType.RAVAGER, EntityType.SALMON, EntityType.SHEEP, EntityType.SHULKER, EntityType.SILVERFISH, EntityType.SKELETON, EntityType.SKELETON_HORSE,
-            EntityType.SLIME, EntityType.SNOW_GOLEM, EntityType.SPIDER, EntityType.SQUID, EntityType.STRAY, EntityType.STRIDER, EntityType.TRADER_LLAMA,
-            EntityType.TROPICAL_FISH, EntityType.TURTLE, EntityType.VEX, EntityType.VILLAGER, EntityType.VINDICATOR, EntityType.WANDERING_TRADER,
-            EntityType.WITCH, EntityType.WITHER, EntityType.WITHER_SKELETON, EntityType.ZOGLIN, EntityType.ZOMBIE, EntityType.ZOMBIE_HORSE, EntityType.ZOMBIE_VILLAGER,
-            EntityType.ZOMBIFIED_PIGLIN);
+    public static final List<EntityType<? extends Entity>> POS_ENTITY_TYPE_LIST = List.of(BAT, BEE, BLAZE, CAVE_SPIDER,
+            CHICKEN, COD, COW, CREEPER, DONKEY, DROWNED, ELDER_GUARDIAN, ENDER_DRAGON, ENDERMITE, EVOKER, GHAST,
+            GLOW_SQUID, GOAT, GUARDIAN, HOGLIN, HORSE, HUSK, IRON_GOLEM, LLAMA, MAGMA_CUBE, MULE, MOOSHROOM, OCELOT,
+            PANDA, PARROT, PHANTOM, PIG, PIGLIN, PIGLIN_BRUTE, PILLAGER, POLAR_BEAR, PUFFERFISH, RABBIT, RAVAGER, SALMON,
+            SHEEP, SHULKER, SILVERFISH, SKELETON, SKELETON_HORSE, SLIME, SNOW_GOLEM, SPIDER, SQUID, STRAY, STRIDER,
+            TRADER_LLAMA, TROPICAL_FISH, TURTLE, VEX, VILLAGER, VINDICATOR, WANDERING_TRADER, WITCH, WITHER,
+            WITHER_SKELETON, ZOGLIN, ZOMBIE, ZOMBIE_HORSE, ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN);
 
-    public static final List<EntityType<? extends Entity>> NEG_ENTITY_TYPE_LIST = List.of(EntityType.AXOLOTL, EntityType.CAT, EntityType.DOLPHIN,
-            EntityType.ENDERMAN, EntityType.FOX, EntityType.WOLF);
+    public static final List<EntityType<? extends Entity>> NEG_ENTITY_TYPE_LIST = List.of(AXOLOTL, CAT, DOLPHIN,
+            ENDERMAN, FOX, WOLF);
 
     public static boolean validEntityType(LivingEntity livingEntity) {
         return LIVING_ENTITY_TYPE_LIST.contains(livingEntity.getType());

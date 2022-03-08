@@ -24,7 +24,7 @@ public class SkillTreeGuiDescription extends SyncedGuiDescription {
 
         WPlainPanel root = new WPlainPanel();
         setRootPanel(root);
-        root.setSize(300, 200);
+        root.setSize(400, 500);
         root.setInsets(Insets.ROOT_PANEL);
 
         WItemSlot itemSlot = WItemSlot.of(blockInventory, 0);
