@@ -18,7 +18,8 @@
       "kluzzio.roa.RealmOfAlora"
     ],
     "client": [
-      "kluzzio.roa.gui.ScreenClientInit"
+      "kluzzio.roa.gui.ScreenClientInit",
+      "kluzzio.roa.networking.ROAClient"
     ]
   },
   "mixins": [
