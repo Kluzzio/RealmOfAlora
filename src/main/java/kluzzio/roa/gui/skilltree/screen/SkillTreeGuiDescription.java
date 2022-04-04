@@ -26,7 +26,7 @@ public class SkillTreeGuiDescription extends SyncedGuiDescription {
         WPlainPanel root = new WPlainPanel();
         setRootPanel(root);
         root.setSize(200, 300);
-        root.setInsets(Insets.ROOT_PANEL);
+        root.setInsets(new Insets(1));
 
         WSprite backgroundTexture = new WSprite(new Identifier("roa:textures/client/gui/background.png"));
         root.add(backgroundTexture, 0, 0, 200, 300);
